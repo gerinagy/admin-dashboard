@@ -1,16 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import store from './app/store'
-import { Provider } from 'react-redux'
-import { onGetUserData } from './modules/dashboard/dashboard-slice'
-
-function GetUsers() {
-  if (store.getState().dashboard.usersData.length === 0) {
-    return store.dispatch(onGetUserData())
-  }
-}
-GetUsers()
+import { Provider} from 'react-redux'
 
 ReactDOM.render(
   <React.StrictMode>
