@@ -62,6 +62,7 @@ function UserForm() {
                                     fullWidth
                                     id='email'
                                     label='Email address'
+                                    type='email'
                                     value={selectedUser.email}
                                     onChange={(e) => dispatch(onEmailChanged(e.target.value))}
                                 />
