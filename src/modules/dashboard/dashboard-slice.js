@@ -3,12 +3,13 @@ import axios from 'axios'
 
 const initialState = {
   usersData: [],
-  isUserFormOpen: false,
+  
   alertProps: {
     open: false,
     id: undefined,
     name: ''
   },
+
   selectedUser: {
     id: NaN || undefined,
     name: '',
@@ -62,19 +63,16 @@ export const dashboardSlice = createSlice({
   reducers: {
     setSelectedUser: (state, action) => {
       const id = action.payload
-      state.isUserFormOpen = true
       state.selectedUser = state.usersData.find(user => user.id === id)
     },
     onAddUser: (state, action) => {
       const user = action.payload
       const users = state.usersData
       state.usersData = [user, ...users]
-      state.isUserFormOpen = false
       state.selectedUser = initialState.selectedUser
     },
     onEditUser: (state, action) => {
       const updatedUser = action.payload
-      //Check if this works
       state.selectedUser.id = updatedUser.id
       state.selectedUser.name = updatedUser.name
       state.selectedUser.username = updatedUser.username
@@ -86,18 +84,13 @@ export const dashboardSlice = createSlice({
       state.usersData = state.usersData.filter(user => user.id !== updatedUser.id)
       state.usersData = [updatedUser, ...state.usersData]
       state.selectedUser = initialState.selectedUser
-      state.isUserFormOpen = false
     },
     onDeleteUser: (state, action) => {
       const id = action.payload
       state.usersData = state.usersData.filter(user => user.id !== id)
     },
     onCancelForm: (state) => {
-      state.isUserFormOpen = false
       state.selectedUser = initialState.selectedUser
-    },
-    onUserFormOpenHandler: (state, action) => {
-      state.isUserFormOpen = action.payload
     },
     onAlertHandler: (state, action) => {
       const { open, id, name } = action.payload
@@ -144,5 +137,5 @@ export const dashboardSlice = createSlice({
   }
 })
 
-export const { onAddUser, onEditUser, onUpdateUser, onDeleteUser, setSelectedUser, onCancelForm, onUserFormOpenHandler, onNameChanged, onUsernameChanged, onEmailChanged, onCityChanged, onAlertHandler } = dashboardSlice.actions
+export const { onAddUser, onEditUser, onUpdateUser, onDeleteUser, setSelectedUser, onCancelForm, onNameChanged, onUsernameChanged, onEmailChanged, onCityChanged, onAlertHandler } = dashboardSlice.actions
 export default dashboardSlice.reducer

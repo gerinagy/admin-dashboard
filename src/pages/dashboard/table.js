@@ -8,8 +8,8 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { Button, Divider, Grid, Typography } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { setSelectedUser, onUserFormOpenHandler, onAlertHandler } from '../../modules/dashboard/dashboard-slice'
-
+import { setSelectedUser, onAlertHandler } from '../../modules/dashboard/dashboard-slice'
+import { Link } from 'react-router-dom'
 
 function UserTable() {
     const usersData = useSelector((state) => state.dashboard.usersData)
@@ -21,7 +21,7 @@ function UserTable() {
                 <Grid container padding={2} display='flex' justifyContent='space-between' >
                     <Typography variant='h5'>User list</Typography>
                     <Button variant='contained' color='primary'
-                        onClick={() => dispatch(onUserFormOpenHandler(true))} >
+                        component={Link} to={'/user-form'} >
                         Add new
                     </Button>
                 </Grid>
@@ -50,13 +50,14 @@ function UserTable() {
                                 <TableCell align='left'>{user.address.city}</TableCell>
                                 <TableCell align='center'>
                                     <Button variant='contained' color='warning'
+                                        component={Link} to={'/user-form'}
                                         onClick={() => dispatch(setSelectedUser(user.id))} >
                                         Edit
                                     </Button>
                                 </TableCell>
                                 <TableCell align='center'>
                                     <Button variant='contained' color='error'
-                                        onClick={() => dispatch(onAlertHandler({open: true, id: user.id, name:  user.name}))} >
+                                        onClick={() => dispatch(onAlertHandler({ open: true, id: user.id, name: user.name }))} >
                                         Delete
                                     </Button>
                                 </TableCell>

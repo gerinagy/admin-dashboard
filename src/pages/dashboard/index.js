@@ -1,12 +1,10 @@
 import { Grid, Typography } from '@mui/material'
-import * as React from 'react'
-import { useSelector } from 'react-redux'
-import AlertDialog from './confirmation-modal'
-import UserForm from './user-form'
+import React from 'react'
+import AlertDialog from '../components/confirmation-modal'
 import UserTable from './table'
 
-function HomePage() {
-    const isUserFormOpen = useSelector((state) => state.dashboard.isUserFormOpen)
+function DashboardPage() {
+
     return (
         <>
             <AlertDialog />
@@ -17,11 +15,11 @@ function HomePage() {
                     </Typography>
                 </Grid>
                 <Grid item >
-                    {isUserFormOpen ? <UserForm /> : <UserTable />}
+                    <UserTable />
                 </Grid>
             </Grid>
         </>
     )
 }
 
-export default HomePage
+export default DashboardPage

@@ -2,11 +2,15 @@ import React from 'react'
 import { Button, TextField, Grid, Box, Typography, Container, Paper } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { onAddUser, onCancelForm, onCityChanged, onEmailChanged, onNameChanged, onUpdateUser, onUsernameChanged } from '../../modules/dashboard/dashboard-slice'
+import { Link, useNavigate } from 'react-router-dom'
 
 function UserForm() {
     const usersIds = useSelector((state) => state.dashboard.usersData).map(user => user.id)
     const selectedUser = useSelector((state) => state.dashboard.selectedUser)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const toHomeHandle = () => (navigate('/', { replace: true }))
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -24,6 +28,7 @@ function UserForm() {
                 }
             }
             dispatch(onAddUser(user))
+            toHomeHandle()
         }
     }
 
@@ -84,6 +89,7 @@ function UserForm() {
                                     color='error'
                                     fullWidth
                                     variant='outlined'
+                                    component={Link} to={'/'}
                                     onClick={() => dispatch(onCancelForm())}
                                 >
                                     Cancel
