@@ -5,12 +5,12 @@ import { onAddUser, onCancelForm, onCityChanged, onEmailChanged, onNameChanged, 
 import { Link, useNavigate } from 'react-router-dom'
 
 function UserForm() {
-    const usersIds = useSelector((state) => state.dashboard.usersData).map(user => user.id)
-    const selectedUser = useSelector((state) => state.dashboard.selectedUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const usersIds = useSelector((state) => state.dashboard.usersData).map(user => user.id)
+    const selectedUser = useSelector((state) => state.dashboard.selectedUser)
 
-    const toHomeHandle = () => (navigate('/', { replace: true }))
+    const toDashboardRedirect = () => (navigate('/', { replace: true }))
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -28,8 +28,8 @@ function UserForm() {
                 }
             }
             dispatch(onAddUser(user))
-            toHomeHandle()
         }
+        toDashboardRedirect()
     }
 
     return (

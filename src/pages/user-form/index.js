@@ -7,7 +7,7 @@ function UserFormPage() {
         <Grid container spacing={4} padding={5} display='flex' flexDirection='column' >
             <Grid item >
                 <Typography variant='h4'>
-                    Dashboard
+                    User Form
                 </Typography>
             </Grid>
             <Grid item >
